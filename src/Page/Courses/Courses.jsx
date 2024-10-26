@@ -1,14 +1,12 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
+import { useState, useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import SmallLoader from "../../Component/SmallLoader";
-import { useContext } from "react";
-import { CartDataContext } from "../../Component/CartContext";
 
 const Courses = () => {
-  const { addToCart, removeFromCart, cartItems } =
-    useContext(CartDataContext);
+  const [cartCourse, setCartCourse] = useState(null);
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["allCourse"],
@@ -18,19 +16,31 @@ const Courses = () => {
     },
   });
 
-  const isInCart = (courseId) => cartItems.some((item) => item.id === courseId);
+  useEffect(() => {
+    const cartData = JSON.parse(localStorage.getItem("cart"));
+    if (cartData?.state?.cart?.length) {
+      setCartCourse(cartData.state.cart[0]);
+    }
+  }, []);
 
   const handleAddToCart = (course) => {
-    if (cartItems.length >= 1) {
+    if (cartCourse) {
       toast.error("You can only add one course at a time");
       return;
     }
-    addToCart({ ...course, course_qty: 1 });
+
+    const cartData = {
+      state: { cart: [{ ...course, course_qty: 1 }] },
+      version: 0,
+    };
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    setCartCourse(course);
     toast.success("Course added to cart!");
   };
 
   const handleRemoveFromCart = () => {
-    removeFromCart();
+    localStorage.removeItem("cart");
+    setCartCourse(null);
     toast.info("Course removed from cart.");
   };
 
@@ -41,7 +51,7 @@ const Courses = () => {
       <h1 className="text-sm text-start md:text-xl lg:py-0 mb-2 font-bold">
         Courses
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
         {data?.map((course) => {
           const regularPrice = parseFloat(course.regular_price);
           const discountPrice = parseFloat(course.discount_price);
@@ -50,7 +60,7 @@ const Courses = () => {
             100
           ).toFixed(2);
 
-          const isCourseInCart = isInCart(course.id);
+          const isInCart = cartCourse?.id === course.id;
 
           return (
             <div
@@ -98,7 +108,7 @@ const Courses = () => {
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  {isCourseInCart ? (
+                  {isInCart ? (
                     <button
                       onClick={handleRemoveFromCart}
                       className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full font-bold text-md"
@@ -119,6 +129,7 @@ const Courses = () => {
           );
         })}
       </div>
+      <ToastContainer />
     </div>
   );
 };

@@ -10,15 +10,25 @@ import { IoSettingsSharp } from "react-icons/io5";
 import useHasAccess from "../../Hooks/useHasAccess";
 import { OrderContext } from "../../ContextAPIs/OrderProvider";
 import useSmallScreen from "../../Hooks/useSmallScreen";
-import { CartDataContext } from "../../Component/CartContext";
 
 const MenuBar = () => {
-  const { cartItems } = useContext(CartDataContext);
   const [selected, setSelected] = useState("");
   const location = useLocation();
   const [hasAccess] = useHasAccess();
   const { setOpen } = useContext(OrderContext);
   const [isSmallScreen] = useSmallScreen();
+  const [cartCourses, setCartCourses] = useState([]);
+
+  useEffect(() => {
+    const updateCartData = () => {
+      const cartData =
+        JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
+      setCartCourses(cartData);
+    };
+    updateCartData();
+    const intervalId = setInterval(updateCartData, 100);
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     setSelected(location.pathname);
@@ -83,7 +93,7 @@ const MenuBar = () => {
                     <MdLibraryBooks />
                   </span>
                   <span className="text-text_md font_sans font-medium ">
-                    Cart ({cartItems?.length})
+                    Cart ({cartCourses?.length})
                   </span>
                 </Link>
               </li>

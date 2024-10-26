@@ -1,18 +1,17 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useContext } from "react";
-import { CartDataContext } from "../../Component/CartContext";
 
 const Cart = () => {
-//   const [cartCourses, setCartCourses] = useState([]);
-  const {
-    addToCart,
-    removeFromCart,
-    cartItems: cartCourses, 
-  } = useContext(CartDataContext);
+  const [cartCourses, setCartCourses] = useState([]);
+
+  useEffect(() => {
+    const cartData =
+      JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
+    setCartCourses(cartData);
+  }, []);
 
   const handleQuantityChange = (courseId, delta) => {
     const updatedCourses = cartCourses.map((course) => {
@@ -48,11 +47,6 @@ const Cart = () => {
 
   return (
     <div className="m-mt_16px">
-      <ToastContainer
-        position="top-right"
-        autoClose={3000}
-        hideProgressBar={false}
-      />
       <h1 className="text-sm text-start md:text-xl font-bold">Cart</h1>
       <div className="pt-4">
         <div className="lg:flex items-start gap-3">
@@ -151,6 +145,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
