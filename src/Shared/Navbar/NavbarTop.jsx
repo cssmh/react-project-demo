@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import useUser from "../../Security/useUser";
-import { FaUserCircle, FaShoppingCart } from "react-icons/fa";
+import { FaUserCircle } from "react-icons/fa";
 import useSmallScreen from "../../Hooks/useSmallScreen";
 
 const NavbarTop = () => {
@@ -48,7 +48,7 @@ const NavbarTop = () => {
         document.removeEventListener("mousedown", handleClickOutside);
       };
     }
-  }, [handleClickOutside, isSmallScreen, open]);
+  }, [open, isSmallScreen]);
 
   useEffect(() => {
     if (isSmallScreen) {
@@ -68,29 +68,23 @@ const NavbarTop = () => {
           />
         </div>
         <div className="hidden lg:block"></div>
+
         <div className="flex flex-col items-center justify-center text-text_sm font-semibold relative group">
           <div className="flex items-center gap-8">
             <h1 className="text-blue-500 text-xl font-medium">
               {userData?.userData.name}
             </h1>
-
-            {/* Cart Icon */}
-            <Link to={"/cart"}>
-              <FaShoppingCart
-                className="text-black cursor-pointer text-xl"
-                title="Cart"
-              />
-            </Link>
             {userData?.userData.image ? (
               <img
                 className="w-[40px] h-[40px] rounded-full"
                 src={`${imgUrl}${userData.userData.image}`}
-                alt="Profile"
+                alt=""
               />
             ) : (
               <FaUserCircle className="w-[40px] h-[40px] rounded-full text-black" />
             )}
           </div>
+
           <div className="absolute top-10 right-3 bg-_white shadow-md rounded-sm overflow-hidden pt-2 w-48 z-10 group-hover:scale-100 transition-transform duration-300 transform origin-top-right scale-0">
             {userData && (
               <Link

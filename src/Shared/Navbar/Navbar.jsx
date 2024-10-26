@@ -21,7 +21,6 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [open]);
-  
   return (
     <div className="bg-bg_primary">
       <div className="navbar max-w-7xl mx-auto px-0 py-4">

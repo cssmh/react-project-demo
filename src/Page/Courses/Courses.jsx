@@ -1,8 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Courses = () => {
-  // Fetch data from API using React Query
+  const [cartCourse, setCartCourse] = useState(null);
+
   const { data = [], isLoading } = useQuery({
     queryKey: ["allCourse"],
     queryFn: async () => {
@@ -10,12 +13,43 @@ const Courses = () => {
       return res?.data?.courseData;
     },
   });
-  console.log(data)
+
+  useEffect(() => {
+    const cartData = JSON.parse(localStorage.getItem("cart"));
+    if (cartData?.state?.cart?.length) {
+      setCartCourse(cartData.state.cart[0]);
+    }
+  }, []);
+
+  const handleAddToCart = (course) => {
+    if (cartCourse) {
+      toast.error("You can only add one course at a time");
+      return;
+    }
+
+    // Set the course in local storage as the cart item
+    const cartData = {
+      state: { cart: [{ ...course, course_qty: 1 }] },
+      version: 0,
+    };
+    localStorage.setItem("cart", JSON.stringify(cartData));
+    setCartCourse(course);
+    toast.success("Course added to cart!");
+  };
+
+  const handleRemoveFromCart = () => {
+    localStorage.removeItem("cart");
+    setCartCourse(null);
+    toast.info("Course removed from cart.");
+  };
 
   if (isLoading) return <p>Loading...</p>;
 
   return (
     <div className="mt-5">
+      <h1 className="text-sm text-start md:text-xl lg:py-0 mb-2 font-bold">
+        Courses
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
         {data?.map((course) => {
           const regularPrice = parseFloat(course.regular_price);
@@ -25,13 +59,19 @@ const Courses = () => {
             100
           ).toFixed(2);
 
+          const isInCart = cartCourse?.id === course.id;
+
           return (
             <div
               key={course.id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className="bg-white shadow-lg rounded-lg overflow-hidden mx-2"
             >
               <div className="relative">
-                <img src={course?.photo} className="w-[200px] h-[250px] mx-auto" alt={course.course_name} />
+                <img
+                  src={course?.photo}
+                  className="w-full h-[350px] mx-auto"
+                  alt={course.course_name}
+                />
                 <div className="absolute top-0 left-0 p-2">
                   <h3 className="text-white text-xl font-bold">
                     {course.course_name}
@@ -43,19 +83,14 @@ const Courses = () => {
                   {course.course_name}
                 </h2>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="flex text-blue-500 text-md">
-                    ★★★★★ 
-                    {/* (no need to change) */}
-                  </span>
+                  <span className="flex text-blue-500 text-md">★★★★★</span>
                   <span className="ml-2 text-gray-600 text-md font-bold">
                     {course.trainer_data?.name || "Unknown Trainer"}
                   </span>
                 </div>
                 <p className="text-gray-600 text-md mb-4">
                   Course Details{" "}
-                  <span className="text-blue-500">
-                    Show Details (no need to change)
-                  </span>
+                  <span className="text-blue-500">Show Details</span>
                 </p>
                 <hr />
                 <div className="mt-4 flex justify-between items-center">
@@ -72,9 +107,21 @@ const Courses = () => {
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full font-bold text-md">
-                    Add To Cart
-                  </button>
+                  {isInCart ? (
+                    <button
+                      onClick={handleRemoveFromCart}
+                      className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full font-bold text-md"
+                    >
+                      Remove from Cart
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleAddToCart(course)}
+                      className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 w-full font-bold text-md"
+                    >
+                      Add to Cart
+                    </button>
+                  )}
                 </div>
               </div>
             </div>

@@ -9,17 +9,15 @@ import OrderProvider from "./ContextAPIs/OrderProvider";
 const queryClient = new QueryClient();
 import "primereact/resources/themes/lara-light-cyan/theme.css";
 import BasicProvider from "./ContextAPIs/BasicProvider.jsx";
-import 'aos/dist/aos.css';
+import "aos/dist/aos.css";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <>
+  <QueryClientProvider client={queryClient}>
+    <OrderProvider>
+      <BasicProvider>
+        <RouterProvider router={Router} />
+      </BasicProvider>
+    </OrderProvider>
     <ToastContainer />
-    <QueryClientProvider client={queryClient}>
-      <OrderProvider>
-        <BasicProvider>
-          <RouterProvider router={Router} />
-        </BasicProvider>
-      </OrderProvider>
-    </QueryClientProvider>
-  </>
+  </QueryClientProvider>
 );
