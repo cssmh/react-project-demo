@@ -10,38 +10,19 @@ import { IoSettingsSharp } from "react-icons/io5";
 import useHasAccess from "../../Hooks/useHasAccess";
 import { OrderContext } from "../../ContextAPIs/OrderProvider";
 import useSmallScreen from "../../Hooks/useSmallScreen";
+import { CartDataContext } from "../../Component/CartContext";
 
 const MenuBar = () => {
+  const { cartItems } = useContext(CartDataContext);
   const [selected, setSelected] = useState("");
   const location = useLocation();
   const [hasAccess] = useHasAccess();
   const { setOpen } = useContext(OrderContext);
   const [isSmallScreen] = useSmallScreen();
-  const [cartLength, setCartLength] = useState(0);
 
   useEffect(() => {
     setSelected(location.pathname);
   }, [location.pathname]);
-
-  useEffect(() => {
-    const getCartLength = () => {
-      const storedCart = JSON.parse(localStorage.getItem("cart")) || {};
-      const cartItems = storedCart.state?.cart || [];
-      setCartLength(cartItems.length);
-    };
-
-    getCartLength();
-
-    const handleStorageChange = () => {
-      getCartLength();
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
 
   const handleClick = (path) => {
     setSelected(path);
@@ -102,7 +83,7 @@ const MenuBar = () => {
                     <MdLibraryBooks />
                   </span>
                   <span className="text-text_md font_sans font-medium ">
-                    Cart ({cartLength})
+                    Cart ({cartItems?.length})
                   </span>
                 </Link>
               </li>

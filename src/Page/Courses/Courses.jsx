@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import "react-toastify/dist/ReactToastify.css";
-import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import SmallLoader from "../../Component/SmallLoader";
+import { useContext } from "react";
+import { CartDataContext } from "../../Component/CartContext";
 
 const Courses = () => {
-  const [cartCourse, setCartCourse] = useState(null);
+  const { addToCart, removeFromCart, cartItems } =
+    useContext(CartDataContext);
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["allCourse"],
@@ -16,36 +18,23 @@ const Courses = () => {
     },
   });
 
-  useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem("cart"));
-    if (cartData?.state?.cart?.length) {
-      setCartCourse(cartData.state.cart[0]);
-    }
-  }, []);
+  const isInCart = (courseId) => cartItems.some((item) => item.id === courseId);
 
   const handleAddToCart = (course) => {
-    if (cartCourse) {
+    if (cartItems.length >= 1) {
       toast.error("You can only add one course at a time");
       return;
     }
-
-    // Set the course in local storage as the cart item
-    const cartData = {
-      state: { cart: [{ ...course, course_qty: 1 }] },
-      version: 0,
-    };
-    localStorage.setItem("cart", JSON.stringify(cartData));
-    setCartCourse(course);
+    addToCart({ ...course, course_qty: 1 });
     toast.success("Course added to cart!");
   };
 
   const handleRemoveFromCart = () => {
-    localStorage.removeItem("cart");
-    setCartCourse(null);
+    removeFromCart();
     toast.info("Course removed from cart.");
   };
 
-  if (isLoading) return <SmallLoader />
+  if (isLoading) return <SmallLoader />;
 
   return (
     <div className="mt-5">
@@ -61,7 +50,7 @@ const Courses = () => {
             100
           ).toFixed(2);
 
-          const isInCart = cartCourse?.id === course.id;
+          const isCourseInCart = isInCart(course.id);
 
           return (
             <div
@@ -109,7 +98,7 @@ const Courses = () => {
                   </div>
                 </div>
                 <div className="mt-4 flex gap-2">
-                  {isInCart ? (
+                  {isCourseInCart ? (
                     <button
                       onClick={handleRemoveFromCart}
                       className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600 w-full font-bold text-md"

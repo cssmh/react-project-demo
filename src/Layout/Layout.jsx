@@ -29,7 +29,7 @@ const Layout = () => {
             <NavbarTop />
             <div className="overflow-y-auto h-[calc(100vh-52px)]">
               <div className="min-h-[calc(100vh-140px)]">
-              <Outlet />
+                <Outlet />
               </div>
               <Copyright />
             </div>

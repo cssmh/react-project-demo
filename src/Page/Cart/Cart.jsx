@@ -1,17 +1,18 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useContext } from "react";
+import { CartDataContext } from "../../Component/CartContext";
 
 const Cart = () => {
-  const [cartCourses, setCartCourses] = useState([]);
-
-  useEffect(() => {
-    const cartData =
-      JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
-    setCartCourses(cartData);
-  }, []);
+//   const [cartCourses, setCartCourses] = useState([]);
+  const {
+    addToCart,
+    removeFromCart,
+    cartItems: cartCourses, 
+  } = useContext(CartDataContext);
 
   const handleQuantityChange = (courseId, delta) => {
     const updatedCourses = cartCourses.map((course) => {
