@@ -1,17 +1,62 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-
 import { RiDeleteBin5Line } from "react-icons/ri";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Cart = () => {
+  const [cartCourses, setCartCourses] = useState([]);
+
+  useEffect(() => {
+    const cartData =
+      JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
+    setCartCourses(cartData);
+  }, []);
+
+  const handleQuantityChange = (courseId, delta) => {
+    const updatedCourses = cartCourses.map((course) => {
+      if (course.id === courseId) {
+        const newQty = Math.max(course.course_qty + delta, 1);
+        return { ...course, course_qty: newQty };
+      }
+      return course;
+    });
+    setCartCourses(updatedCourses);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
+    );
+  };
+
+  const handleRemoveCourse = (courseId) => {
+    const updatedCourses = cartCourses.filter(
+      (course) => course.id !== courseId
+    );
+    setCartCourses(updatedCourses);
+    localStorage.setItem(
+      "cart",
+      JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
+    );
+    toast.success("Course removed from cart!");
+  };
+
+  const totalPrice = cartCourses.reduce(
+    (sum, course) => sum + course.discount_price * course.course_qty,
+    0
+  );
+
   return (
     <div className="m-mt_16px">
-      <h1 className="text-sm text-start md:text-text_xl lg:py-0 font-bold">
-        Cart
-      </h1>
-      <div className="pt-p_16px">
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+      />
+      <h1 className="text-sm text-start md:text-xl font-bold">Cart</h1>
+      <div className="pt-4">
         <div className="lg:flex items-start gap-3">
           <div className="w-full lg:w-[58%] bg-white border-2">
-            <table className=" overflow-x-auto  w-full">
+            <table className="w-full">
               <thead>
                 <tr className="border-b-4 border-gray-300">
                   <th className="text-[14.4px] w-6/12 font-bold p-[7px] text-black">
@@ -29,76 +74,75 @@ const Cart = () => {
                 </tr>
               </thead>
 
-              <tbody className="overflow-x-auto ">
-                <tr className="border-b border-gray-300 overflow-x-auto">
-                  <td>
-                    <div className="flex items-center justify-center ">
-                      <div className="w-[20%] text-center flex items-center justify-center ">
-                        <RiDeleteBin5Line className="text-xl hover:text-footer_color cursor-pointer" />
-                      </div>
-                      <div className="flex flex-col text-center justify-center items-center py-2  w-[80%]">
-                        <div className="mask">
+              <tbody>
+                {cartCourses.map((course) => (
+                  <tr key={course.id} className="border-b border-gray-300">
+                    <td>
+                      <div className="flex items-center justify-center">
+                        <button
+                          className="text-xl hover:text-red-500 cursor-pointer w-[20%] text-center flex items-center justify-center"
+                          onClick={() => handleRemoveCourse(course.id)}
+                        >
+                          <RiDeleteBin5Line />
+                        </button>
+                        <div className="flex flex-col text-center justify-center items-center py-2 w-[80%]">
                           <img
-                            className="h-[40px] w-[70px]"
-                            src=""
+                            className="h-[70px] w-[70px]"
+                            src={course.photo}
                             alt="Course"
                           />
+                          <p className="text-[14.4px] px-[7px] text-center">
+                            {course.course_name}
+                          </p>
                         </div>
-                        <p className="text-[14.4px] px-[7px] text-center flex ">
-                          Course name{" "}
-                          <span className="hidden lg:flex ">- unit name</span>
-                        </p>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                      discount price
-                    </p>
-                  </td>
-                  <td>
-                    <div className="flex justify-center">
-                      <div className="border">
-                        <button className="px-4 w-[30px] font-bold font_standard my-1.5">
+                    </td>
+                    <td className="text-[14.4px] font-bold p-[7px] text-black text-center">
+                      Tk {course.discount_price}
+                    </td>
+                    <td>
+                      <div className="flex justify-center items-center">
+                        <button
+                          onClick={() => handleQuantityChange(course.id, -1)}
+                          className="px-4 w-[30px] font-bold border hover:bg-gray-200"
+                        >
                           -
                         </button>
-                      </div>
-                      <div className="border-y">
                         <input
                           type="number"
-                          className="font-bold w-[30px] lg:w-[60px] font_standard px-2 text-center mx-auto h-full"
+                          readOnly
+                          value={course.course_qty}
+                          className="w-[30px] lg:w-[60px] font-bold text-center mx-1 border-y"
                         />
-                      </div>
-                      <div className="border">
-                        <button className="px-4 w-[30px] font-bold font_standard my-1.5">
+                        <button
+                          onClick={() => handleQuantityChange(course.id, 1)}
+                          className="px-4 w-[30px] font-bold border hover:bg-gray-200"
+                        >
                           +
                         </button>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <p className="text-[14.4px] font-bold p-[7px] text-black text-center">
-                      discount price * quantity
-                    </p>
-                  </td>
-                </tr>
+                    </td>
+                    <td className="text-[14.4px] font-bold p-[7px] text-black text-center">
+                      Tk {course.discount_price * course.course_qty}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-          <div className="lg:w-[41%] bg-white border-2 ">
-            <div className="px-[30px]">
-              <h2 className="font-bold text-start text-text_medium pt-2 pb-1 border-b-2 border-black">
+          <div className="lg:w-[41%] bg-white border-2 mt-4 lg:mt-0">
+            <div className="px-6 py-4">
+              <h2 className="font-bold text-lg border-b-2 pb-2 mb-4">
                 Cart Summary
               </h2>
-              <div className="py-3 flex justify-between border-b border-gray-300">
+              <div className="flex justify-between mb-4 border-b pb-2">
                 <p className="text-black font-bold">Total Price</p>
-                <p className="text-black font-bold"></p>
+                <p className="text-black font-bold">Tk {totalPrice}</p>
               </div>
-
               <Link
-                to={`/cart/checkout`}
-                state={"bdt"}
-                className="font-medium text-black mb-2 border-2 hover:bg-[#D2C5A2] duration-300 py-2 px-4  block text-center mx-auto w-full"
+                to="/checkout"
+                state="bdt"
+                className="font-medium text-black border-2 hover:bg-gray-200 duration-300 py-2 px-4 block text-center mx-auto w-full"
               >
                 PROCEED TO CHECKOUT
               </Link>

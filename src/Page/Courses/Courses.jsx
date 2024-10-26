@@ -1,7 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import SmallLoader from "../../Component/SmallLoader";
 
 const Courses = () => {
   const [cartCourse, setCartCourse] = useState(null);
@@ -43,7 +45,7 @@ const Courses = () => {
     toast.info("Course removed from cart.");
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <SmallLoader />
 
   return (
     <div className="mt-5">
