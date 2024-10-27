@@ -17,13 +17,13 @@ const MenuBar = () => {
   const [hasAccess] = useHasAccess();
   const { setOpen } = useContext(OrderContext);
   const [isSmallScreen] = useSmallScreen();
-  const [cartCourses, setCartCourses] = useState([]);
+  const [totalCart, setTotalCart] = useState(0);
 
   useEffect(() => {
     const updateCartData = () => {
       const cartData =
         JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
-      setCartCourses(cartData);
+      setTotalCart(cartData[0]?.course_qty);
     };
     updateCartData();
     const intervalId = setInterval(updateCartData, 100);
@@ -93,7 +93,7 @@ const MenuBar = () => {
                     <MdLibraryBooks />
                   </span>
                   <span className="text-text_md font_sans font-medium ">
-                    Cart ({cartCourses?.length})
+                    Cart ({totalCart})
                   </span>
                 </Link>
               </li>

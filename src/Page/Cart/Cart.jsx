@@ -59,7 +59,7 @@ const Cart = () => {
             <div className="w-full lg:w-[58%] bg-white border-2">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b-4 border-gray-300">
+                  <tr className="border-b-2 border-gray-300">
                     <th className="text-[14.4px] w-6/12 font-bold p-[7px] text-black">
                       Course
                     </th>
@@ -81,7 +81,7 @@ const Cart = () => {
                       <td>
                         <div className="flex items-center justify-center">
                           <button
-                            className="text-xl hover:text-red-500 cursor-pointer w-[20%] text-center flex items-center justify-center"
+                            className="text-xl text-red-500 cursor-pointer w-[20%] text-center flex items-center justify-center"
                             onClick={() => handleRemoveCourse(course.id)}
                           >
                             <RiDeleteBin5Line />
