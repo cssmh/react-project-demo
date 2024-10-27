@@ -243,6 +243,28 @@ const Ostad = () => {
           <div className="flex justify-center my-3 bg-[#9fa3aa]">
             <button className="py-1">আরো ২৫টি দেখুন</button>
           </div>
+          <div className="flex items-center my-12">
+            <span className="text-3xl font-bold">
+              ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস
+            </span>
+            <iframe
+              width="290"
+              height="200"
+              src="https://www.youtube.com/embed/2hwpPB3ZTC8?si=W11RG_iWNSVnKDdf"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <div>
+            <p className="text-lg">ইন্সট্রাক্টর</p>
+            <h3 className="text-xl font-semibold">লিড ইন্সট্রাক্টর</h3>
+            <p className="mt-2 text-gray-600">Abdullah Al Noman Prince</p>
+            <p className="mt-1 text-gray-500">
+              PHP Laravel | Web Application Developer
+            </p>
+          </div>
         </div>
         <div
           ref={rightRef}
