@@ -3,6 +3,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import { LuArrowRight } from "react-icons/lu";
+import { GoChevronRight } from "react-icons/go";
+import { BiTimeFive } from "react-icons/bi";
+import { RiUserFollowLine } from "react-icons/ri";
+import { IoMdCall } from "react-icons/io";
 
 const Ostad = () => {
   const rightRef = useRef(null);
@@ -19,7 +23,6 @@ const Ostad = () => {
     const leftRect = leftElement.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // Check if the bottom of the left element is above the bottom of the viewport
     if (leftRect.bottom > windowHeight) {
       setIsFixed(rect.top >= 0);
     } else {
@@ -41,8 +44,7 @@ const Ostad = () => {
       <h1 className="text-center bg-[#12b76a] text-white p-2">
         WP25 প্রোমো এপ্লাই করলে ২৫% ডিসকাউন্ট আর বাকি ১ দিন এপ্লাই করুন
       </h1>
-      <div className="flex flex-col-reverse lg:flex-row">
-        {/* Left Side Content */}
+      <div className="flex flex-col-reverse lg:flex-row mx-1">
         <div
           ref={leftRef}
           className="lg:w-[60%] p-5 overflow-y-auto max-h-screen"
@@ -58,8 +60,6 @@ const Ostad = () => {
             বিগিনাররাও।
           </p>
         </div>
-
-        {/* Right Side Fixed Section */}
         <div
           ref={rightRef}
           className={`border lg:w-[40%] transition-transform duration-300 ${
@@ -77,36 +77,84 @@ const Ostad = () => {
               allowFullScreen
             ></iframe>
           </div>
-          <div className="flex justify-center gap-2 text-sm border-b">
-            <p className="text-lg font-bold mb-2 bg-[#fff1e9]">৪ দিন বাকি</p>
-            <p className="text-lg font-bold mb-2 bg-[#f0e1fb]">অফার</p>
+          <div className="flex justify-center gap-4 text-sm border-b">
+            <p className="flex items-center gap-1 text-lg font-bold mb-2 bg-[#fff1e9]">
+              {" "}
+              <BiTimeFive />৪ দিন বাকি
+            </p>
+            <p className="flex items-center gap-1 text-lg font-bold mb-2 bg-[#f0e1fb]">
+              <RiUserFollowLine />
+              ৮১ সিট বাকি
+            </p>
           </div>
           <div className="flex justify-between px-3 gap-2 text-sm border-b">
-            <p className="text-lg font-bold mb-2 bg-[#fff1e9]">৳৮,০০০</p>
-            <p className="text-lg font-bold mb-2 bg-[#f0e1fb]">প্রোমো কোড</p>
+            <p className="font-bold mb-2 text-[#ff8c4b] text-2xl">৳৮,০০০</p>
+            <p className="text-lg font-bold mb-2">প্রোমো কোড</p>
           </div>
-          <button className="p-3 bg-[#ffcd33] w-full font-semibold text-sm mb-3">
-            ব্যাচে ভর্তি হোন
+          <button className="p-3 flex items-center justify-center bg-[#ffcd33] w-full font-semibold text-sm mb-3">
+            ব্যাচে ভর্তি হোন{" "}
+            <span className="text-lg">
+              <GoChevronRight />
+            </span>
           </button>
-          <div className="mb-6">
+          <div className="mb-6 px-2">
             <p className="text-xl font-semibold">এই কোর্সে আপনি পাচ্ছেন:</p>
-            <div className="list-disc list-inside grid grid-cols-2 text-sm">
-              <p className="flex">
+            <div className="list-disc list-inside grid grid-cols-2 text-sm mt-1">
+              <p className="flex gap-1">
                 <LuArrowRight />
                 একদম ব্যাসিক HTML, CSS, JavaScript থেকে শুরু
               </p>
-              <p>ওয়ার্ডপ্রেসের জন্য প্রয়োজনীয় PHP</p>
-              <p>হেডার, ফুটার, ব্লগ লেআউট</p>
-              <p>এলিমেন্টর ও অ্যাডভান্সড এলিমেন্টর উইজেটস</p>
-              <p>টেস্টিমোনিয়াল, ব্লগ, পোর্টফোলিও পেইজ তৈরি</p>
-              <p>এবাউট মি পেইজ, সার্ভিস পেইজ</p>
-              <p>Woocommerce ব্যাসিক টু এডভান্সড</p>
-              <p>থিমফরেস্ট ও মার্কেটপ্লেসের জন্য ইনকাম গাইডলাইন</p>
-              <p>৪৬ টি লাইভ ক্লাস</p>
-              <p>২০০+ প্রিরেকর্ডেড ভিডিও</p>
-              <p>দিনে ১ বেলা সাপোর্ট ক্লাস</p>
-              <p>সকল লাইভ ক্লাস রেকর্ডিং এর লাইফটাইম এক্সেস</p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                ওয়ার্ডপ্রেসের জন্য প্রয়োজনীয় PHP
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                হেডার, ফুটার, ব্লগ লেআউট
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                এলিমেন্টর ও অ্যাডভান্সড এলিমেন্টর উইজেটস
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                টেস্টিমোনিয়াল, ব্লগ, পোর্টফোলিও পেইজ তৈরি
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                এবাউট মি পেইজ, সার্ভিস পেইজ
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                Woocommerce ব্যাসিক টু এডভান্সড
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                থিমফরেস্ট ও মার্কেটপ্লেসের জন্য ইনকাম গাইডলাইন
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                ৪৬ টি লাইভ ক্লাস
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                ২০০+ প্রিরেকর্ডেড ভিডিও
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                দিনে ১ বেলা সাপোর্ট ক্লাস
+              </p>
+              <p className="flex gap-1">
+                <LuArrowRight />
+                সকল লাইভ ক্লাস রেকর্ডিং এর লাইফটাইম এক্সেস
+              </p>
             </div>
+            <p className="border-t pt-2 mt-2 flex items-center gap-1">
+              <span className="text-[#ff9051] flex items-center">
+                <IoMdCall /> কল করুন +8801940444476
+              </span>{" "}
+              (সকাল ১০টা থেকে রাত ১০টা)
+            </p>
           </div>
         </div>
       </div>
