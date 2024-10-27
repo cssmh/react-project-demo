@@ -76,8 +76,8 @@ const Ostad = () => {
             সাজানো হয়েছে একদম বিগিনার ফ্রেন্ডলি ওয়েতে, জয়েন করতে পারবেন ০.০
             বিগিনাররাও।
           </p>
-          <div className="flex justify-between border-l-2 pl-2 border-[#ff8c4b] bg-white p-3">
-            <p className="bg-[#ff8c4b] p-2 text-white text-center items-center">
+          <div className="flex justify-between border-l-2 pl-2 border-[#ff8c4b] bg-white p-2">
+            <p className="bg-[#ff8c4b] p-2 rounded-md text-white">
               ব্যাচ ৪
             </p>
             <p className="border-x-2 px-3 lg:px-12">
@@ -210,7 +210,7 @@ const Ostad = () => {
                   {" "}
                   <p className="flex items-center gap-1">
                     <FaCirclePlay />{" "}
-                    <span>1 Introduction to HTML for Beginners</span>{" "}
+                    <span>1 HTML for Beginners</span>{" "}
                     <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
                       <MdOutlineVideoSettings />
                       প্রি রেকর্ডেড
@@ -267,13 +267,13 @@ const Ostad = () => {
           <div className="flex justify-center my-3 bg-[#c6ccd6]">
             <button className="py-2">আরো ২৫টি দেখুন</button>
           </div>
-          <div className="flex items-center my-12">
-            <span className="text-3xl font-bold">
+          <div className="flex flex-col md:flex-row items-center my-8">
+            <span className="text-xl md:text-3xl font-bold mb-2 md:mb-0">
               ক্লিক করে দেখে নিন কোর্সের ডেমো ক্লাস
             </span>
             <iframe
-              width="290"
-              height="200"
+              width="100%"
+              height="210"
               src="https://www.youtube.com/embed/2hwpPB3ZTC8?si=W11RG_iWNSVnKDdf"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -281,7 +281,7 @@ const Ostad = () => {
               allowfullscreen
             ></iframe>
           </div>
-          <div className=" p-5">
+          <div className="p-2">
             <p className="text-2xl font-semibold border-b pb-2 mb-2">
               ইন্সট্রাক্টর
             </p>
@@ -308,7 +308,7 @@ const Ostad = () => {
               <div className="flex items-center gap-2 bg-white mt-3 p-3 rounded-md">
                 <img
                   className="w-12 rounded-3xl"
-                  src="https://lh3.googleusercontent.com/a/ACg8ocKK0Zmiiw579ElRkNruYKcz5zPBQltI5ZNFwLgQv5x1142MveY=s288-c-no"
+                  src="https://i.ibb.co.com/Lx9tTrb/momin.jpg"
                   alt=""
                 />
                 <div>
@@ -435,7 +435,7 @@ const Ostad = () => {
             isFixed ? "fixed top-16 right-0" : "relative"
           } bg-gray-100`}
         >
-          <div className="mb-6">
+          <div className="mb-4">
             <iframe
               width="100%"
               height="280"
@@ -446,7 +446,7 @@ const Ostad = () => {
               allowFullScreen
             ></iframe>
           </div>
-          <div className="flex justify-center gap-4 text-sm border-b">
+          <div className="flex justify-center gap-4 text-sm border-b pb-2">
             <p className="flex items-center gap-1 text-lg font-bold mb-2 bg-[#fff1e9]">
               {" "}
               <BiTimeFive />৪ দিন বাকি
@@ -456,7 +456,7 @@ const Ostad = () => {
               ৮১ সিট বাকি
             </p>
           </div>
-          <div className="flex justify-between px-3 gap-2 text-sm border-b">
+          <div className="flex justify-between px-3 gap-2 text-sm border-b pt-2">
             <p className="font-bold mb-2 text-[#ff8c4b] text-2xl">৳৮,০০০</p>
             <p className="text-lg font-bold mb-2">প্রোমো কোড</p>
           </div>
@@ -466,7 +466,7 @@ const Ostad = () => {
               <GoChevronRight />
             </span>
           </button>
-          <div className="mb-6 px-2">
+          <div className="mb-6 px-3">
             <p className="text-xl font-semibold">এই কোর্সে আপনি পাচ্ছেন:</p>
             <div className="list-disc list-inside grid grid-cols-2 text-sm mt-1">
               <p className="flex gap-2 items-center">
@@ -543,7 +543,7 @@ const Ostad = () => {
               </p>
             </div>
             <p className="border-t pt-2 mt-2 flex items-center gap-1">
-              <span className="text-[#ff9051] flex items-center">
+              <span className="text-[#ee8345] flex items-center">
                 <IoMdCall /> কল করুন +8801940444476
               </span>{" "}
               (সকাল ১০টা থেকে রাত ১০টা)

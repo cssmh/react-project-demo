@@ -3,10 +3,8 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const navigateTo = useNavigate();
   const [cartCourses, setCartCourses] = useState([]);
   const {
     register,
@@ -27,7 +25,6 @@ const Checkout = () => {
       autoClose: 3000,
     });
     reset();
-    navigateTo("/order-details");
   };
 
   useEffect(() => {
@@ -76,7 +73,6 @@ const Checkout = () => {
 
   return (
     <div className="mt-3 mx-2">
-      <ToastContainer />
       <h1 className="text-2xl mb-2 font-bold">Checkout</h1>
       <form
         className="bg-white shadow-md rounded-lg p-3 md:p-6"
@@ -522,6 +518,7 @@ const Checkout = () => {
                           <td>
                             <div className="flex justify-center items-center">
                               <button
+                                type="button"
                                 onClick={() =>
                                   handleQuantityChange(course.id, -1)
                                 }
@@ -536,6 +533,7 @@ const Checkout = () => {
                                 className="w-[30px] lg:w-[60px] font-bold text-center mx-1 border-y"
                               />
                               <button
+                                type="button"
                                 onClick={() =>
                                   handleQuantityChange(course.id, 1)
                                 }
@@ -572,6 +570,7 @@ const Checkout = () => {
           </div>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

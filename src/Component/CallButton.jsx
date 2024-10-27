@@ -12,6 +12,9 @@ const CallButton = () => {
     setIsModalOpen(false);
   };
 
+  const phoneNumber = "+8801767616067";
+  const whatsappNumber = "+8801767616067";
+
   return (
     <div>
       <div
@@ -39,12 +42,20 @@ const CallButton = () => {
               className="mb-4 w-1/2 mx-auto h-auto"
             />
             <div className="flex justify-between">
-              <button className="bg-green-500 text-white px-4 py-2 rounded">
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                className="bg-green-500 text-white px-4 py-2 rounded"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 WhatsApp
-              </button>
-              <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              </a>
+              <a
+                href={`tel:${phoneNumber}`}
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
                 Call
-              </button>
+              </a>
             </div>
           </div>
         </div>

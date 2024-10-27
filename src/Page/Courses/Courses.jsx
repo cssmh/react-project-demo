@@ -61,7 +61,7 @@ const Courses = () => {
 
   return (
     <div className="mt-5">
-      <h1 className="text-sm text-start md:text-xl lg:py-0 mb-2 font-bold">
+      <h1 className="text-sm text-start md:text-xl lg:py-0 mb-2 font-bold mx-1">
         Courses
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
@@ -83,7 +83,7 @@ const Courses = () => {
               <div className="relative group">
                 <img
                   src={course?.photo}
-                  className="w-full h-[350px] mx-auto transition-transform duration-300 group-hover:scale-110"
+                  className="lg:w-full h-[350px] mx-auto transition-transform duration-300 group-hover:scale-110"
                   alt={course.course_name}
                 />
                 <div className="absolute top-0 left-0 p-2">
@@ -96,13 +96,13 @@ const Courses = () => {
                 <h2 className="text-gray-800 text-lg font-semibold mb-2">
                   {course.course_name}
                 </h2>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3">
                   <span className="flex text-blue-500 text-md">★★★★★</span>
                   <span className="ml-2 text-gray-600 text-md font-bold">
                     {course.trainer_data?.name || "Unknown Trainer"}
                   </span>
                 </div>
-                <p className="text-gray-600 text-md mb-4">
+                <p className="text-gray-600 text-md mb-3">
                   Course Details{" "}
                   <span className="text-blue-500">Show Details</span>
                 </p>
@@ -155,7 +155,6 @@ const Courses = () => {
           </button>
         ))}
       </div>
-
       <ToastContainer />
     </div>
   );
