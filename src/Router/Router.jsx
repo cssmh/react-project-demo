@@ -9,12 +9,17 @@ import Cart from "../Page/Cart/Cart";
 import OrderDetails from "../Page/OrderDetails/OrderDetails";
 import Checkout from "../Page/Checkout/Checkout";
 import Search from "../Page/Search/Search";
+import Ostad from "../Component/Ostad";
 
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
+      {
+        path: "/ostad",
+        element: <Ostad />,
+      },
       {
         path: "/course",
         element: <Courses />,
