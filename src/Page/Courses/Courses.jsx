@@ -41,6 +41,7 @@ const Courses = () => {
   const handleRemoveFromCart = () => {
     localStorage.removeItem("cart");
     setCartCourse(null);
+    localStorage.removeItem("user");
     toast.info("Course removed from cart.");
   };
 

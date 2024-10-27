@@ -37,6 +37,7 @@ const Cart = () => {
       "cart",
       JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
     );
+    localStorage.removeItem("user");
     toast.success("Course removed from cart!");
   };
 
