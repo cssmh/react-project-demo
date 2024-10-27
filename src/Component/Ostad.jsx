@@ -6,7 +6,10 @@ import { LuArrowRight } from "react-icons/lu";
 import { GoChevronRight } from "react-icons/go";
 import { BiTimeFive } from "react-icons/bi";
 import { RiUserFollowLine } from "react-icons/ri";
+import { FaCirclePlay } from "react-icons/fa6";
 import { IoMdCall } from "react-icons/io";
+import { FaRegEye } from "react-icons/fa";
+import { MdOutlineVideoSettings } from "react-icons/md";
 
 const Ostad = () => {
   const rightRef = useRef(null);
@@ -59,6 +62,187 @@ const Ostad = () => {
             সাজানো হয়েছে একদম বিগিনার ফ্রেন্ডলি ওয়েতে, জয়েন করতে পারবেন ০.০
             বিগিনাররাও।
           </p>
+          <div className="flex justify-between border-l-2 pl-2 border-[#ff8c4b] bg-white p-3">
+            <p className="bg-[#ff8c4b] p-2 text-white text-center items-center">
+              ব্যাচ ৪
+            </p>
+            <p className="border-x-2 px-12">
+              শুরু হবে <br /> বৃহস্পতিবার, ৩১ অক্টো
+            </p>
+            <p>
+              ক্লাস শিডিউল <br /> বৃহ, সোম, (রাত ৯:০০ - ১০:০০)
+            </p>
+          </div>
+          <p className="my-4">
+            <span className="text-xl font-bold">স্টাডি প্ল্যান</span> ৩০ টি
+            মডিউল . ৪৯ টি লাইভ ক্লাস
+          </p>
+          <div className="border border-black">
+            <div className="collapse collapse-arrow bg-base-200">
+              <input type="radio" name="my-accordion-2" defaultChecked />
+              <div className="collapse-title text-xl font-medium">
+                <div className="flex gap-2">
+                  <p className="text-base bg-[#12b76a] text-white p-2">
+                    মডিউল{" "}
+                    <span className="flex justify-center">
+                      <FaCirclePlay />
+                    </span>
+                  </p>
+                  <div>
+                    <p className="font-bold text-lg">শুরুর আগের শুরু ফ্রী</p>
+                    <p className="text-[12px]">
+                      কোর্স শুরু হবার আগে এই ভিডিওগুলো দেখে নিবেন
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="collapse-content">
+                <p className="text-sm my-1 border-t">
+                  আপনি যদি বিগিনার হয়ে থাকেন, তাহলে অবশ্যই এই ভিডিও রিসোর্সগুলো
+                  দেখে লাইভ ব্যাচে জয়েন করবেন। বিজয় আপনারই!
+                </p>
+                <p className="flex items-center justify-between border-y py-4">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay /> <span>1 Html Introduction</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+                <p className="flex items-center justify-between border-y py-4">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay /> <span>1 Html Basic</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+                <p className="flex items-center justify-between border-y py-2">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay /> <span>1 Html Text Format</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+              </div>
+            </div>
+            <div className="collapse collapse-arrow bg-base-200">
+              <input type="radio" name="my-accordion-2" defaultChecked />
+              <div className="collapse-title text-xl font-medium">
+                <div className="flex gap-2">
+                  <p className="text-base bg-[#fbaa00] text-white p-2">
+                    মডিউল{" "}
+                    <span className="flex justify-center">
+                      <FaCirclePlay />
+                    </span>
+                  </p>
+                  <div>
+                    <p className="font-bold text-lg">
+                      HTML বেসিকস ফর ওয়ার্ডপ্রেস থিমস
+                    </p>
+                    <p className="text-[12px]">
+                      কোর্স শুরু হবার আগে এই ভিডিওগুলো দেখে নিবেন
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div className="collapse-content">
+                <p className="text-sm my-1 border-t">
+                  আপনি যদি বিগিনার হয়ে থাকেন, তাহলে অবশ্যই এই ভিডিও রিসোর্সগুলো
+                  দেখে লাইভ ব্যাচে জয়েন করবেন। বিজয় আপনারই!
+                </p>
+                <p className="flex items-center justify-between border-y py-4">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay />{" "}
+                    <span>1 Introduction to HTML for Beginners</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+                <p className="flex items-center justify-between border-y py-4">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay /> <span>1 Html Basic</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+                <p className="flex items-center justify-between border-y py-2">
+                  {" "}
+                  <p className="flex items-center gap-1">
+                    <FaCirclePlay /> <span>1 Html Text Format</span>{" "}
+                    <span className="flex items-center gap-1 border border-[#12b76a] rounded-xl text-[#12b76a] p-[2px]">
+                      <MdOutlineVideoSettings />
+                      প্রি রেকর্ডেড
+                    </span>
+                  </p>
+                  <div className="flex gap-1 items-center">
+                    <span>৩ মিনিট</span>
+                    <button className="flex items-center gap-1 bg-[#c9cbcd] rounded-lg p-2">
+                      {" "}
+                      <FaRegEye />
+                      দেখুন
+                    </button>
+                  </div>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="flex justify-center my-3 bg-[#9fa3aa]">
+            <button className="py-1">আরো ২৫টি দেখুন</button>
+          </div>
         </div>
         <div
           ref={rightRef}
