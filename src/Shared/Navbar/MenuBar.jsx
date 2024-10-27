@@ -113,7 +113,7 @@ const MenuBar = () => {
                     <MdLibraryBooks />
                   </span>
                   <span className="text-text_md font_sans font-medium ">
-                    Cart ({totalCart})
+                    Cart {totalCart && `(${totalCart})`}
                   </span>
                 </Link>
               </li>

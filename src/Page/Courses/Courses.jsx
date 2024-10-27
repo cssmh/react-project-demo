@@ -7,6 +7,8 @@ import SmallLoader from "../../Component/SmallLoader";
 
 const Courses = () => {
   const [cartCourse, setCartCourse] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const coursesPerPage = 6; // Set the number of courses per page
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["allCourse"],
@@ -45,6 +47,16 @@ const Courses = () => {
     toast.info("Course removed from cart.");
   };
 
+  const indexOfLastCourse = currentPage * coursesPerPage;
+  const indexOfFirstCourse = indexOfLastCourse - coursesPerPage;
+  const currentCourses = data.slice(indexOfFirstCourse, indexOfLastCourse);
+
+  const totalPages = Math.ceil(data.length / coursesPerPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   if (isLoading) return <SmallLoader />;
 
   return (
@@ -53,7 +65,7 @@ const Courses = () => {
         Courses
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2">
-        {data?.map((course) => {
+        {currentCourses.map((course) => {
           const regularPrice = parseFloat(course.regular_price);
           const discountPrice = parseFloat(course.discount_price);
           const discountPercentage = (
@@ -68,10 +80,10 @@ const Courses = () => {
               key={course.id}
               className="bg-white shadow-lg rounded-lg overflow-hidden mx-2"
             >
-              <div className="relative">
+              <div className="relative group">
                 <img
                   src={course?.photo}
-                  className="w-full h-[350px] mx-auto"
+                  className="w-full h-[350px] mx-auto transition-transform duration-300 group-hover:scale-110"
                   alt={course.course_name}
                 />
                 <div className="absolute top-0 left-0 p-2">
@@ -130,6 +142,20 @@ const Courses = () => {
           );
         })}
       </div>
+      <div className="flex justify-center mt-4 space-x-2 mb-6">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`py-2 px-4 rounded ${
+              page === currentPage ? "bg-blue-500 text-white" : "bg-gray-200"
+            }`}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+
       <ToastContainer />
     </div>
   );

@@ -2,15 +2,19 @@
 // Link: https://ostad.app/course/wordpress-theme-development
 
 import { useEffect, useRef, useState } from "react";
-import { LuArrowRight } from "react-icons/lu";
 import { GoChevronRight } from "react-icons/go";
 import { BiTimeFive } from "react-icons/bi";
 import { RiUserFollowLine } from "react-icons/ri";
 import { FaCirclePlay } from "react-icons/fa6";
 import { IoMdCall } from "react-icons/io";
 import { FaRegEye } from "react-icons/fa";
+import { RiDiscountPercentFill } from "react-icons/ri";
 import { FaMedal } from "react-icons/fa";
+import { HiOutlineClock } from "react-icons/hi2";
+import { AiOutlineCheck } from "react-icons/ai";
+import { AiFillStar } from "react-icons/ai";
 import { MdOutlineVideoSettings } from "react-icons/md";
+import CallButton from "./CallButton";
 
 const Ostad = () => {
   const rightRef = useRef(null);
@@ -28,7 +32,7 @@ const Ostad = () => {
     const windowHeight = window.innerHeight;
 
     if (leftRect.bottom > windowHeight) {
-      setIsFixed(rect.top >= 0 && rect.bottom < windowHeight); // Adjust this condition
+      setIsFixed(rect.top >= 0 && rect.bottom < windowHeight);
     } else {
       setIsFixed(false);
     }
@@ -45,13 +49,22 @@ const Ostad = () => {
 
   return (
     <div className="relative">
-      <h1 className="text-center bg-[#12b76a] text-white p-2">
-        WP25 প্রোমো এপ্লাই করলে ২৫% ডিসকাউন্ট আর বাকি ১ দিন এপ্লাই করুন
+      <CallButton />
+      <h1 className="flex items-center justify-center text-center bg-[#12b76a] text-white p-1">
+        <span className="text-xl">
+          <RiDiscountPercentFill />
+        </span>{" "}
+        <span className="font-semibold mx-1">WP25</span> প্রোমো এপ্লাই করলে{" "}
+        <span className="font-semibold mx-1">২৫% ডিসকাউন্ট</span> আর বাকি{" "}
+        <span className="flex items-center font-bold mx-1 bg-white text-[#12b76a] gap-1 p-1">
+          <HiOutlineClock /> ১ দিন
+        </span>{" "}
+        <span className="border-b">এপ্লাই করুন</span>
       </h1>
       <div className="flex flex-col-reverse lg:flex-row mx-1">
         <div
           ref={leftRef}
-          className="lg:w-[60%] p-3 overflow-y-auto max-h-screen"
+          className="lg:w-[60%] p-2 overflow-y-auto max-h-screen"
         >
           <h1 className="text-5xl font-bold mb-4 p-4">
             WordPress Theme Development
@@ -78,7 +91,17 @@ const Ostad = () => {
             <span className="text-xl font-bold">স্টাডি প্ল্যান</span> ৩০ টি
             মডিউল . ৪৯ টি লাইভ ক্লাস
           </p>
-          <div className="border border-black">
+          <div className="mb-5 bg-[#101828] flex text-white p-3 space-x-2">
+            <p className="p-2 bg-white text-[#89919d] rounded-lg">
+              স্টাডি প্ল্যান
+            </p>
+            <p className="bg-[#1d2939] p-2">ইন্সট্রাক্টর</p>
+            <p className="bg-[#1d2939] p-2">কোর্স সম্পর্কে</p>
+            <p className="bg-[#1d2939] p-2">প্রজেক্টস</p>
+            <p className="bg-[#1d2939] p-2">রিভিউ</p>
+            <p className="bg-[#1d2939] p-2">হেল্প</p>
+          </div>
+          <div className="border border-gray-500 rounded-md">
             <div className="collapse collapse-arrow bg-base-200">
               <input type="radio" name="my-accordion-2" defaultChecked />
               <div className="collapse-title text-xl font-medium">
@@ -241,7 +264,7 @@ const Ostad = () => {
               </div>
             </div>
           </div>
-          <div className="flex justify-center my-3 bg-[#9fa3aa]">
+          <div className="flex justify-center my-3 bg-[#c6ccd6]">
             <button className="py-2">আরো ২৫টি দেখুন</button>
           </div>
           <div className="flex items-center my-12">
@@ -258,41 +281,51 @@ const Ostad = () => {
               allowfullscreen
             ></iframe>
           </div>
-          <div className="bg-[#fff1e9] p-5">
-            <p className="text-lg">ইন্সট্রাক্টর</p>
-            <h3 className="flex items-center text-xl gap-2 font-bold">
-              <span className="text-[#eea029]">
-                <FaMedal />
-              </span>{" "}
-              লিড ইন্সট্রাক্টর
-            </h3>
-            <div className="flex items-center gap-2 bg-white">
-              <img
-                className="w-12 rounded-3xl"
-                src="https://lh3.googleusercontent.com/a/ACg8ocKK0Zmiiw579ElRkNruYKcz5zPBQltI5ZNFwLgQv5x1142MveY=s288-c-no"
-                alt=""
-              />
-              <div>
-                <p className="mt-2 text-gray-600">Md Momin Hossain</p>
-                <p className="mt-1 text-gray-500">
-                  PHP Laravel | Web Application Developer
-                </p>
+          <div className=" p-5">
+            <p className="text-2xl font-semibold border-b pb-2 mb-2">
+              ইন্সট্রাক্টর
+            </p>
+            <div className="bg-[#f8e5da] p-6 rounded-lg border-l-4 border-[#ffbb95]">
+              <h3 className="flex items-center text-xl gap-2 font-bold mb-2">
+                <span className="text-[#eea029]">
+                  <FaMedal />
+                </span>{" "}
+                লিড ইন্সট্রাক্টর
+              </h3>
+              <div className="flex items-center gap-2 bg-white p-3 rounded-md">
+                <img
+                  className="w-12 rounded-3xl"
+                  src="https://lh3.googleusercontent.com/a/ACg8ocKK0Zmiiw579ElRkNruYKcz5zPBQltI5ZNFwLgQv5x1142MveY=s288-c-no"
+                  alt=""
+                />
+                <div>
+                  <p className="mt-2 font-semibold text-lg">Md Momin Hossain</p>
+                  <p className="mt-1 text-gray-500">
+                    PHP Laravel | Web Application Developer
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="flex items-center gap-2 bg-white mt-3">
-              <img
-                className="w-12 rounded-3xl"
-                src="https://lh3.googleusercontent.com/a/ACg8ocKK0Zmiiw579ElRkNruYKcz5zPBQltI5ZNFwLgQv5x1142MveY=s288-c-no"
-                alt=""
-              />
-              <div>
-                <p className="mt-2 text-gray-600">Mobarok Hossain Momin</p>
-                <p className="mt-1 text-gray-500">Web Application Developer</p>
+              <div className="flex items-center gap-2 bg-white mt-3 p-3 rounded-md">
+                <img
+                  className="w-12 rounded-3xl"
+                  src="https://lh3.googleusercontent.com/a/ACg8ocKK0Zmiiw579ElRkNruYKcz5zPBQltI5ZNFwLgQv5x1142MveY=s288-c-no"
+                  alt=""
+                />
+                <div>
+                  <p className="mt-2 font-semibold text-lg">
+                    Mobarok Hossain Momin
+                  </p>
+                  <p className="mt-1 text-gray-500">
+                    Web Application Developer
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           <div className="my-6">
-            <p>কোর্স সম্পর্কে</p>
+            <p className="text-xl md:text-2xl font-semibold mb-2 border-b pb-2">
+              কোর্স সম্পর্কে
+            </p>
             <p>
               বর্তমানে বিশ্বের ছোট-বড় যেকোনো প্রতিষ্ঠানে ওয়েবসাইট এর প্রয়োজন
               হচ্ছে এবং এর ফলে থিম ডেভেলপারদের জনপ্রিয়তা প্রতিনিয়ত বাড়ছে।
@@ -327,7 +360,9 @@ const Ostad = () => {
             </p>
           </div>
           <div className="my-8">
-            <h1 className="text-3xl">রিকোয়ারমেন্টস</h1>
+            <h1 className="text-xl md:text-2xl font-semibold mb-2 border-b pb-2">
+              রিকোয়ারমেন্টস
+            </h1>
             <ul>
               <li>
                 -পূর্ব কোডিং নলেজ জানা না থাকলেও শেখা যাবে ওয়ার্ডপ্রেস থিম
@@ -339,8 +374,15 @@ const Ostad = () => {
             </ul>
           </div>
           <div className="my-10">
-            <h1 className="text-3xl">রিভিউ</h1>
-            <div className="bg-white p-3">
+            <h1 className="text-xl md:text-2xl font-semibold mb-2 border-b pb-2">
+              রিভিউ
+            </h1>
+            <div className="bg-white p-3 mt-5">
+              <div className="flex text-lg">
+                {[...Array(6)].map((_, index) => (
+                  <AiFillStar key={index} className="text-yellow-500 mr-1" />
+                ))}
+              </div>
               <p className="mb-4">Md Mosaddek Hossen</p>
               <p>
                 ক্লাসগুলো খুব ভালো ছিল। আমি কোর্সটি পরিচিতদের কাছে রেকমেন্ড
@@ -349,6 +391,11 @@ const Ostad = () => {
               </p>
             </div>
             <div className="bg-white p-3 my-4">
+              <div className="flex text-lg">
+                {[...Array(6)].map((_, index) => (
+                  <AiFillStar key={index} className="text-yellow-500 mr-1" />
+                ))}
+              </div>
               <p className="mb-4">Md Mosaddek Hossen</p>
               <p>
                 ক্লাসগুলো খুব ভালো ছিল। আমি কোর্সটি পরিচিতদের কাছে রেকমেন্ড
@@ -357,6 +404,11 @@ const Ostad = () => {
               </p>
             </div>
             <div className="bg-white p-3">
+              <div className="flex text-lg">
+                {[...Array(6)].map((_, index) => (
+                  <AiFillStar key={index} className="text-yellow-500 mr-1" />
+                ))}
+              </div>
               <p className="mb-4">Md Mosaddek Hossen</p>
               <p>
                 ক্লাসগুলো খুব ভালো ছিল। আমি কোর্সটি পরিচিতদের কাছে রেকমেন্ড
@@ -369,10 +421,11 @@ const Ostad = () => {
             <button className="py-2">আরো ৯টি দেখুন</button>
           </div>
           <div className="my-10">
-            <h1 className="text-3xl font-semibold">হেল্প</h1>
+            <h1 className="text-xl md:text-2xl font-semibold">হেল্প</h1>
             <p>
-              ব্যাচ সংক্রান্ত যেকোনো তথ্যের জন্যে কল করুন +88019404444** (সকাল
-              ১০টা থেকে রাত ১০টা)
+              ব্যাচ সংক্রান্ত যেকোনো তথ্যের জন্যে কল করুন{" "}
+              <span className="font-semibold">+88019404444**</span> (সকাল ১০টা
+              থেকে রাত ১০টা)
             </p>
           </div>
         </div>
@@ -416,52 +469,76 @@ const Ostad = () => {
           <div className="mb-6 px-2">
             <p className="text-xl font-semibold">এই কোর্সে আপনি পাচ্ছেন:</p>
             <div className="list-disc list-inside grid grid-cols-2 text-sm mt-1">
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 একদম ব্যাসিক HTML, CSS, JavaScript থেকে শুরু
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 ওয়ার্ডপ্রেসের জন্য প্রয়োজনীয় PHP
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 হেডার, ফুটার, ব্লগ লেআউট
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 এলিমেন্টর ও অ্যাডভান্সড এলিমেন্টর উইজেটস
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 টেস্টিমোনিয়াল, ব্লগ, পোর্টফোলিও পেইজ তৈরি
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 এবাউট মি পেইজ, সার্ভিস পেইজ
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 Woocommerce ব্যাসিক টু এডভান্সড
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 থিমফরেস্ট ও মার্কেটপ্লেসের জন্য ইনকাম গাইডলাইন
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 ৪৬ টি লাইভ ক্লাস
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 ২০০+ প্রিরেকর্ডেড ভিডিও
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 দিনে ১ বেলা সাপোর্ট ক্লাস
               </p>
-              <p className="flex gap-1">
-                <LuArrowRight />
+              <p className="flex gap-2 items-center">
+                <div className="flex justify-center rounded-full border border-black">
+                  <AiOutlineCheck className="text-xs" />
+                </div>
                 সকল লাইভ ক্লাস রেকর্ডিং এর লাইফটাইম এক্সেস
               </p>
             </div>
