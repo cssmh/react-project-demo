@@ -105,7 +105,7 @@ const MenuBar = () => {
                 }`}
                 onClick={() => handleClick("/checkout")}
               >
-                <Link
+                {/* <Link
                   to="/checkout"
                   className="flex items-center gap-gap_6px py-pt_primary"
                 >
@@ -115,7 +115,7 @@ const MenuBar = () => {
                   <span className="text-text_md font_sans font-medium ">
                     Checkout
                   </span>
-                </Link>
+                </Link> */}
               </li>
 
               <li
