@@ -3,8 +3,10 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
+  const navigateTo = useNavigate();
   const [cartCourses, setCartCourses] = useState([]);
   const {
     register,
@@ -14,15 +16,21 @@ const Checkout = () => {
   } = useForm();
 
   const onSubmit = (data) => {
+    if (localStorage.getItem("user")) {
+      toast.warning("You have already submitted your information!", {
+        autoClose: 3000,
+      });
+      return;
+    }
     localStorage.setItem("user", JSON.stringify(data));
-    toast.success("Form submitted and saved to localStorage!", {
+    toast.success("Form submitted successfully!", {
       autoClose: 3000,
     });
-    reset(); // Reset the form fields
+    reset();
+    navigateTo("/order-details");
   };
 
   useEffect(() => {
-    // Clear form errors on mount
     reset();
   }, [reset]);
 
@@ -57,6 +65,7 @@ const Checkout = () => {
       "cart",
       JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
     );
+    localStorage.removeItem("user");
     toast.success("Course removed from cart!");
   };
 
@@ -68,9 +77,7 @@ const Checkout = () => {
   return (
     <div className="mt-3 mx-2">
       <ToastContainer />
-      <h1 className="text-2xl mb-2 font-bold">
-        Checkout
-      </h1>
+      <h1 className="text-2xl mb-2 font-bold">Checkout</h1>
       <form
         className="bg-white shadow-md rounded-lg p-3 md:p-6"
         onSubmit={handleSubmit(onSubmit)}
@@ -432,7 +439,6 @@ const Checkout = () => {
               )}
             </div>
           </div>
-
           <div className="grid grid-cols-1 mb-4">
             <div>
               <label

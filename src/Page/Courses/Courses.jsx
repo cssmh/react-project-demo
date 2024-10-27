@@ -8,7 +8,7 @@ import SmallLoader from "../../Component/SmallLoader";
 const Courses = () => {
   const [cartCourse, setCartCourse] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const coursesPerPage = 6; // Set the number of courses per page
+  const coursesPerPage = 6;
 
   const { data = [], isLoading } = useQuery({
     queryKey: ["allCourse"],

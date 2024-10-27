@@ -67,7 +67,7 @@ const Ostad = () => {
           className="lg:w-[60%] p-2 overflow-y-auto max-h-screen"
         >
           <h1 className="text-5xl font-bold mb-4 p-4">
-            WordPress Theme Development
+            WordPress Theme <br /> Development
           </h1>
           <p className="mb-6 text-sm">
             বিশ্বের সবচেয়ে জনপ্রিয় কন্টেন্ট ম্যানেজমেন্ট সিস্টেম ওয়ার্ডপ্রেস থিম
