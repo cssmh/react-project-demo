@@ -66,17 +66,16 @@ const Checkout = () => {
   );
 
   return (
-    <div className="mt-5 border mx-2">
+    <div className="mt-3 mx-2">
       <ToastContainer />
-      <h1 className="text-sm text-start md:text-2xl mb-2 font-bold">
+      <h1 className="text-2xl mb-2 font-bold">
         Checkout
       </h1>
       <form
-        className="bg-white shadow-md rounded-lg p-6"
+        className="bg-white shadow-md rounded-lg p-3 md:p-6"
         onSubmit={handleSubmit(onSubmit)}
       >
-        {/* Trainee Information Section */}
-        <div className="form-section">
+        <div>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
             <div>
               <label
@@ -89,7 +88,7 @@ const Checkout = () => {
                 type="text"
                 id="fullName"
                 {...register("fullName", { required: "Full Name is required" })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.fullName ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -116,7 +115,7 @@ const Checkout = () => {
                     message: "Invalid email address",
                   },
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.email ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -141,7 +140,7 @@ const Checkout = () => {
                     message: "Must be at least 10 characters",
                   },
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.mobile ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -150,7 +149,6 @@ const Checkout = () => {
               )}
             </div>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
             <div>
               <label
@@ -165,7 +163,7 @@ const Checkout = () => {
                 {...register("parentName", {
                   required: "Father/Mother Name is required",
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.parentName ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -188,7 +186,7 @@ const Checkout = () => {
                 {...register("parentNumber", {
                   required: "Father/Mother Phone is required",
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.parentNumber ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -211,7 +209,7 @@ const Checkout = () => {
                 {...register("school", {
                   required: "School/College Name is required",
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.school ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -233,7 +231,7 @@ const Checkout = () => {
                 type="text"
                 id="jobInfo"
                 {...register("jobInfo", { required: "Job Title is required" })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.jobInfo ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -254,7 +252,7 @@ const Checkout = () => {
                 {...register("guardianName", {
                   required: "Local Guardian Name is required",
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.guardianName ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -275,7 +273,7 @@ const Checkout = () => {
                 type="text"
                 id="guardianNumber"
                 {...register("guardianNumber")}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.guardianNumber ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -299,7 +297,7 @@ const Checkout = () => {
                 type="text"
                 id="nid"
                 {...register("nid", { required: "NID No is required" })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.nid ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -318,7 +316,7 @@ const Checkout = () => {
                 type="date"
                 id="dob"
                 {...register("dob", { required: "Date of Birth is required" })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.dob ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               />
@@ -327,7 +325,6 @@ const Checkout = () => {
               )}
             </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
@@ -339,7 +336,7 @@ const Checkout = () => {
               <select
                 id="gender"
                 {...register("gender", { required: "Gender is required" })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.gender ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               >
@@ -366,7 +363,7 @@ const Checkout = () => {
                 {...register("bloodGroup", {
                   required: "Blood Group is required",
                 })}
-                className={`w-full border ${
+                className={`w-full border outline-none ${
                   errors.bloodGroup ? "border-red-500" : "border-gray-300"
                 } rounded-md p-2`}
               >
@@ -389,7 +386,6 @@ const Checkout = () => {
               )}
             </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
             <div>
               <label
@@ -460,9 +456,7 @@ const Checkout = () => {
             </div>
           </div>
         </div>
-
-        {/* Submit Button */}
-        <div className="m-mt_16px">
+        <div>
           <div className="pt-4">
             {cartCourses.length === 0 ? (
               <div className="text-center py-10">
@@ -491,7 +485,7 @@ const Checkout = () => {
                     </thead>
 
                     <tbody>
-                      {cartCourses.map((course) => (
+                      {cartCourses?.map((course) => (
                         <tr
                           key={course.id}
                           className="border-b border-gray-300"
