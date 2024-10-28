@@ -13,6 +13,12 @@ const Checkout = () => {
     reset,
   } = useForm();
 
+  useEffect(() => {
+    const savedCart =
+      JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
+    setCartCourses(savedCart);
+  }, []);
+
   const onSubmit = (data) => {
     if (localStorage.getItem("user")) {
       toast.warning("You have already submitted your information!", {
@@ -21,22 +27,9 @@ const Checkout = () => {
       return;
     }
     localStorage.setItem("user", JSON.stringify(data));
-    toast.success("Form submitted successfully!", {
-      autoClose: 3000,
-    });
+    toast.success("Form submitted successfully!", { autoClose: 3000 });
     reset();
   };
-
-  useEffect(() => {
-    reset();
-  }, [reset]);
-
-  // cart func
-  useEffect(() => {
-    const cartData =
-      JSON.parse(localStorage.getItem("cart"))?.state?.cart || [];
-    setCartCourses(cartData);
-  }, []);
 
   const handleQuantityChange = (courseId, delta) => {
     const updatedCourses = cartCourses.map((course) => {
@@ -46,24 +39,20 @@ const Checkout = () => {
       }
       return course;
     });
-    setCartCourses(updatedCourses);
-    localStorage.setItem(
-      "cart",
-      JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
-    );
+    updateCart(updatedCourses);
   };
 
   const handleRemoveCourse = (courseId) => {
     const updatedCourses = cartCourses.filter(
       (course) => course.id !== courseId
     );
-    setCartCourses(updatedCourses);
-    localStorage.setItem(
-      "cart",
-      JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
-    );
-    localStorage.removeItem("user");
+    updateCart(updatedCourses);
     toast.success("Course removed from cart!");
+  };
+
+  const updateCart = (courses) => {
+    setCartCourses(courses);
+    localStorage.setItem("cart", JSON.stringify({ state: { cart: courses } }));
   };
 
   const totalPrice = cartCourses.reduce(

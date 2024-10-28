@@ -33,10 +33,7 @@ const Cart = () => {
       (course) => course.id !== courseId
     );
     setCartCourses(updatedCourses);
-    localStorage.setItem(
-      "cart",
-      JSON.stringify({ state: { cart: updatedCourses }, version: 0 })
-    );
+    localStorage.removeItem("cart");
     localStorage.removeItem("user");
     toast.success("Course removed from cart!");
   };
